@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->integer('category_id')->nullable();
             $table->string('name');
             $table->text('description');
+            $table->string('status')->default('OFF');
             $table->timestamps();
         });
     }
