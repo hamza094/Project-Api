@@ -18,10 +18,13 @@ class ProjectResource extends JsonResource
     {
         return [
            'name'=>$this->name,
-           'decription'=>Str::of($this->description)->limit(20),
+
+        $this->mergeWhen($this->status == 'OFF', [
+            'decription'=>Str::of($this->description)->limit(20),
+        ]), 
 
         $this->mergeWhen($this->status == 'ON', [
-            'full_description' => $this->description,
+            'description' => $this->description,
             
         ]), 
 

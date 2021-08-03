@@ -19,6 +19,11 @@ use App\Http\Controllers\Api\ProjectController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
- 
+
 Route::apiresource('/projects',ProjectController::class);
+
+Route::fallback(function(){
+    return response()->json([
+        'message' => 'Page you are looking for is not found might be wrong url. If error persists, contact hamza_pisces@live.com'], 404);
+}); 
 

@@ -17,13 +17,29 @@ class ProjectController extends Controller
         	$project->update(['status'=>'OFF']);
         }
 
-        return ProjectResource::collection($projects);
+        $allProjects= ProjectResource::collection($projects);
+
+         $response=[
+        'info'=>'List of all projects',
+        'project'=>$allProjects
+     ];
+      
+        return response()->json($response,200);
+
     }
 
     public function show(Project $project){
 
        $project->update(['status'=>'ON']);
 
-    	return new ProjectResource($project);
+       $project= new ProjectResource($project);
+
+      $response=[
+        'info'=>'Specific Project Information',
+        'project'=>$project
+     ];
+
+      return response()->json($response,200);
+       
     }
 }
